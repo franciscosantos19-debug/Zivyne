@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { publicUrl } from '@/lib/publicUrl';
 const cookie='zivyne_age_confirmed';
 export function middleware(request: NextRequest) {
   const path=request.nextUrl.pathname;
   if(['/age','/age/denied','/legal','/privacy','/affiliate-disclosure','/api/age/confirm'].includes(path)) return NextResponse.next();
   if(request.cookies.get(cookie)?.value==='1') return NextResponse.next();
   if(path.startsWith('/api/') || path.startsWith('/go/')) return new NextResponse('Age confirmation required',{status:403});
-  const url=new URL('/age',request.url);
+  const url=publicUrl('/age',request);
   if(path!=='/') url.searchParams.set('next',path);
   return NextResponse.redirect(url);
 }
