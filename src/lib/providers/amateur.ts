@@ -154,6 +154,13 @@ function locateRecords(payload: unknown): UnknownRecord[] {
   return [];
 }
 
+function previewVideoUrl(record: UnknownRecord): string | undefined {
+  const raw = asString(firstValue(record, ['video_preview_url','videoPreviewUrl','preview_video_url','previewVideoUrl','video_url','videoUrl','mp4_url','mp4Url']));
+  if (!raw) return undefined;
+  try { const url=new URL(raw); return url.protocol==='https:' && /\.(mp4|webm)(?:\?|$)/i.test(url.href) ? url.toString() : undefined; }
+  catch { return undefined; }
+}
+
 function normalizeCreator(record: UnknownRecord, index: number): Creator | null {
   const name =
     asString(
@@ -251,6 +258,7 @@ function normalizeCreator(record: UnknownRecord, index: number): Creator | null 
       )
     ),
     imageUrl,
+    videoUrl: previewVideoUrl(record),
     profileImageUrl,
     destinationUrl,
     isHD: asBoolean(firstValue(record, ['is_hd', 'isHD', 'hd', 'highDefinition'])),
