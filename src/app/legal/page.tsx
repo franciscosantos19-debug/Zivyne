@@ -1,0 +1,1 @@
+export default function Page(){return <main className="shell section"><h1>Legal notice</h1><p>ZIVYNE is an independent adult creator discovery website. Content and live broadcasts are provided by third parties. Only adults may access this site.</p><a href="/">Back home</a></main>}

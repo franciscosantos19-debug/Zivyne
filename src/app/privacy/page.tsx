@@ -1,0 +1,1 @@
+export default function Page(){return <main className="shell section"><h1>Privacy</h1><p>This website uses an age confirmation cookie. Affiliate links may result in third-party tracking on the destination website. Contact the site operator for data requests.</p><a href="/">Back home</a></main>}

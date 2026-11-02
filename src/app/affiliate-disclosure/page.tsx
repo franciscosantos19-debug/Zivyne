@@ -1,0 +1,1 @@
+export default function Page(){return <main className="shell section"><h1>Affiliate disclosure</h1><p>Some outgoing links are affiliate links. ZIVYNE may receive compensation when visitors use these links. ZIVYNE is independent from Amateur.tv.</p><a href="/">Back home</a></main>}
