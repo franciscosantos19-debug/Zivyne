@@ -11,7 +11,6 @@ export default async function Home() {
   const creators = (await getAmateurCreators())
     .filter(c => c.online && c.provider === 'amateur' && ['men','trans','couples'].includes(c.category))
     .sort((a,b)=>b.viewers-a.viewers);
-  const featured=creators.filter(c=>Boolean(c.imageUrl)).slice(0,12);
   return <main className="zivyneCams zivyneCompact">
     <header><div className="shell nav"><Link className="logo" href="/">ZIVYNE<span className="brandDot">.</span></Link><nav><a href="#men">Men</a><a href="#trans">Trans</a><a href="#couples">Couples</a></nav></div></header>
     <div className="shell">
