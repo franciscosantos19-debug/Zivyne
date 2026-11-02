@@ -13,6 +13,7 @@ export type Creator = {
   online: boolean;
   viewers: number;
   imageUrl?: string;
+  videoUrl?: string;
   profileImageUrl?: string;
   destinationUrl?: string;
   country?: string;
