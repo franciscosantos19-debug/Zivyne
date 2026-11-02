@@ -5,12 +5,11 @@ export const dynamic = 'force-dynamic';
 const sections = [
   { id: 'men', label: 'Men' },
   { id: 'trans', label: 'Trans' },
-  { id: 'women', label: 'Women' },
   { id: 'couples', label: 'Couples' }
 ] as const;
 
 export default async function Home() {
-  const creators = (await getAmateurCreators()).filter(c => c.online && c.provider === 'amateur');
+  const creators = (await getAmateurCreators()).filter(c => c.online && c.provider === 'amateur' && ['men', 'trans', 'couples'].includes(c.category));
   return <main>
     <header><div className="shell nav"><Link className="logo" href="/">ZIVYNE<span className="brandDot">.</span></Link><nav>{sections.map(s=><a key={s.id} href={'#'+s.id}>{s.label}</a>)}</nav><span className="headerLive">● LIVE NOW</span></div></header>
     <section className="hero shell"><div className="heroInner"><div><p className="eyebrow">LIVE CREATOR DISCOVERY • AMATEUR.TV</p><h1>Live right <em>now.</em></h1><p>Explore creators currently broadcasting on Amateur.tv. Choose a category and enter a live room.</p><div className="heroCategories">{sections.map(s=><a href={'#'+s.id} key={s.id}>{s.label} <span>↗</span></a>)}</div></div><aside className="liveCounter"><strong>{creators.length.toLocaleString()}</strong><span>creators live</span><small>Updated from Amateur.tv</small></aside></div></section>
